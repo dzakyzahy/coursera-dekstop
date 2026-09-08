@@ -42,6 +42,7 @@ function App() {
               src={currentUrl} 
               className="w-full h-full"
               allowpopups="true"
+              partition="persist:coursera"
             />
           </div>
         </div>

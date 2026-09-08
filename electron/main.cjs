@@ -25,7 +25,8 @@ function createWindow() {
     return userAgent.replace(/Electron\/\S*\s/, '').replace(/courseradesktopapp\/\S*\s/, '');
   }
 
-  session.defaultSession.webRequest.onBeforeSendHeaders((details, callback) => {
+  const courseraSession = session.fromPartition('persist:coursera');
+  courseraSession.webRequest.onBeforeSendHeaders((details, callback) => {
     const ua = details.requestHeaders['User-Agent'] || details.requestHeaders['user-agent'];
     if (ua) {
       details.requestHeaders['User-Agent'] = spoofUserAgent(ua);
