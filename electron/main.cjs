@@ -21,11 +21,18 @@ function createWindow() {
   // Spoof user agent to allow Google Login in webview
   // Google blocks default Electron User Agent
   const spoofUserAgent = (userAgent) => {
+    if (!userAgent) return '';
     return userAgent.replace(/Electron\/\S*\s/, '').replace(/courseradesktopapp\/\S*\s/, '');
   }
 
   session.defaultSession.webRequest.onBeforeSendHeaders((details, callback) => {
-    details.requestHeaders['User-Agent'] = spoofUserAgent(details.requestHeaders['User-Agent']);
+    const ua = details.requestHeaders['User-Agent'] || details.requestHeaders['user-agent'];
+    if (ua) {
+      details.requestHeaders['User-Agent'] = spoofUserAgent(ua);
+      if (details.requestHeaders['user-agent']) {
+        delete details.requestHeaders['user-agent'];
+      }
+    }
     callback({ cancel: false, requestHeaders: details.requestHeaders });
   });
 
