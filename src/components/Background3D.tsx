@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { Sphere, MeshDistortMaterial, Environment, Float } from '@react-three/drei';
+import { MeshDistortMaterial, Environment, Float } from '@react-three/drei';
 import * as THREE from 'three';
 
 function AnimatedOrb({ color, position, scale, distort, speed }: any) {

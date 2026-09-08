@@ -1,4 +1,4 @@
-import { Home, User, BookOpen, Settings, Moon, Sun } from 'lucide-react';
+import { Home, User, BookOpen, Moon, Sun } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 export default function Sidebar({ isDarkMode, toggleDarkMode, onNavigate }: any) {

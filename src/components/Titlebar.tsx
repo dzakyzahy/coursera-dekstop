@@ -1,11 +1,11 @@
 import { Minus, Square, X } from 'lucide-react';
-import { motion } from 'framer-motion';
+
 
 export default function Titlebar({ isDarkMode }: { isDarkMode: boolean }) {
   // Use IPC to control the window (requires contextBridge in a real app, but for simplicity with contextIsolation: false we can just require)
   const handleAction = (action: string) => {
     try {
-      const { ipcRenderer } = window.require('electron');
+      const { ipcRenderer } = (window as any).require('electron');
       ipcRenderer.send(`window-${action}`);
     } catch (e) {
       console.log('Not running in Electron or require is missing');
