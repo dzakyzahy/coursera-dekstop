@@ -43,7 +43,7 @@
     },
     "win": {
       "target": ["nsis"],
-      "icon": "public/coursera-c-logo.jpg"
+      "icon": "public/coursera-c-logo.png"
     }
   }
 }

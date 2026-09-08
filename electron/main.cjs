@@ -15,7 +15,7 @@ function createWindow() {
       contextIsolation: false,
       webviewTag: true, // Enable webview for embedding Coursera easily
     },
-    icon: path.join(__dirname, '../public/coursera-c-logo.jpg')
+    icon: path.join(__dirname, '../public/coursera-c-logo.png')
   });
 
   // Spoof user agent to allow Google Login in webview
