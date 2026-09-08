@@ -11,10 +11,10 @@ export default function Sidebar({ isDarkMode, toggleDarkMode, is3DEnabled, toggl
   return (
     <div className={`w-64 h-full flex flex-col glass ${isDarkMode ? 'text-white' : 'text-slate-800'} border-r transition-colors duration-300`}>
       <div className="p-6 flex items-center gap-3 no-drag">
-        <div className="w-10 h-10 rounded-xl overflow-hidden shadow-lg border border-white/20 bg-white">
-          <img src="/coursera-logo-full-rgb.png" alt="Coursera" className="w-full h-full object-contain p-1" />
+        <div className="w-10 h-10 rounded-full overflow-hidden shadow-[0_0_15px_rgba(0,86,210,0.5)] border border-white/20 bg-white flex-shrink-0">
+          <img src="/coursera-c-logo.jpg" alt="Coursera" className="w-full h-full object-contain" />
         </div>
-        <h1 className="text-xl font-bold tracking-tight">Coursera</h1>
+        <h1 className="text-xl font-bold tracking-tight truncate">Coursera</h1>
       </div>
 
       <nav className="flex-1 px-4 py-6 space-y-2 no-drag">

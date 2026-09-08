@@ -34,5 +34,16 @@
     "typescript": "~6.0.2",
     "vite": "^8.2.2",
     "wait-on": "^9.1.0"
+  },
+  "build": {
+    "appId": "com.coursera.desktop",
+    "productName": "CourseraDesktop",
+    "directories": {
+      "output": "release"
+    },
+    "win": {
+      "target": ["nsis"],
+      "icon": "public/coursera-c-logo.jpg"
+    }
   }
 }

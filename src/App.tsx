@@ -7,7 +7,8 @@ import CompanionBot from './components/CompanionBot';
 function App() {
   const [isDarkMode, setIsDarkMode] = useState(true);
   const [is3DEnabled, setIs3DEnabled] = useState(true);
-  const [isBotEnabled, setIsBotEnabled] = useState(false);
+  const [isBotEnabled, setIsBotEnabled] = useState(true); // User requested bot
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [currentUrl, setCurrentUrl] = useState('https://www.coursera.org/');
 
   // For TypeScript compiler with webview tag
@@ -18,18 +19,22 @@ function App() {
       {is3DEnabled && <Background3D isDarkMode={isDarkMode} />}
       {isBotEnabled && <CompanionBot />}
       
-      <Titlebar isDarkMode={isDarkMode} />
+      <Titlebar isDarkMode={isDarkMode} toggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)} />
       
       <div className="flex-1 flex w-full h-[calc(100vh-40px)] overflow-hidden">
-        <Sidebar 
-          isDarkMode={isDarkMode} 
-          toggleDarkMode={() => setIsDarkMode(!isDarkMode)} 
-          is3DEnabled={is3DEnabled}
-          toggle3D={() => setIs3DEnabled(!is3DEnabled)}
-          isBotEnabled={isBotEnabled}
-          toggleBot={() => setIsBotEnabled(!isBotEnabled)}
-          onNavigate={(url: string) => setCurrentUrl(url)}
-        />
+        <div className={`transition-all duration-300 ease-in-out overflow-hidden ${isSidebarOpen ? 'w-64 opacity-100' : 'w-0 opacity-0'}`}>
+          <div className="w-64 h-full">
+            <Sidebar 
+              isDarkMode={isDarkMode} 
+              toggleDarkMode={() => setIsDarkMode(!isDarkMode)} 
+              is3DEnabled={is3DEnabled}
+              toggle3D={() => setIs3DEnabled(!is3DEnabled)}
+              isBotEnabled={isBotEnabled}
+              toggleBot={() => setIsBotEnabled(!isBotEnabled)}
+              onNavigate={(url: string) => setCurrentUrl(url)}
+            />
+          </div>
+        </div>
         
         <div className="flex-1 p-4 h-full relative z-10">
           {/* Made the background more transparent to see the 3D effect behind Coursera */}
