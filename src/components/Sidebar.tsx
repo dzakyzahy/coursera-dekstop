@@ -1,0 +1,53 @@
+import { Home, User, BookOpen, Settings, Moon, Sun } from 'lucide-react';
+import { motion } from 'framer-motion';
+
+export default function Sidebar({ isDarkMode, toggleDarkMode, onNavigate }: any) {
+  const menuItems = [
+    { icon: <Home size={20} />, label: 'Home', url: 'https://www.coursera.org/' },
+    { icon: <BookOpen size={20} />, label: 'In Progress', url: 'https://www.coursera.org/in-progress' },
+    { icon: <User size={20} />, label: 'Profile', url: 'https://www.coursera.org/user/profile' },
+  ];
+
+  return (
+    <div className={`w-64 h-full flex flex-col glass ${isDarkMode ? 'text-white' : 'text-slate-800'} border-r transition-colors duration-300`}>
+      <div className="p-6 flex items-center gap-3 no-drag">
+        <div className="w-10 h-10 rounded-xl overflow-hidden shadow-lg border border-white/20">
+          <img src="/icon.jpg" alt="Coursera" className="w-full h-full object-cover" />
+        </div>
+        <h1 className="text-xl font-bold tracking-tight">Coursera</h1>
+      </div>
+
+      <nav className="flex-1 px-4 py-6 space-y-2 no-drag">
+        {menuItems.map((item, idx) => (
+          <motion.button
+            key={idx}
+            whileHover={{ scale: 1.02, backgroundColor: isDarkMode ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)' }}
+            whileTap={{ scale: 0.98 }}
+            onClick={() => onNavigate(item.url)}
+            className="w-full flex items-center gap-4 px-4 py-3 rounded-xl text-sm font-medium transition-colors"
+          >
+            {item.icon}
+            {item.label}
+          </motion.button>
+        ))}
+      </nav>
+
+      <div className="p-4 no-drag">
+        <motion.button
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
+          onClick={toggleDarkMode}
+          className={`w-full flex items-center justify-between px-4 py-3 rounded-xl text-sm font-medium border ${isDarkMode ? 'border-white/10 hover:bg-white/10' : 'border-black/10 hover:bg-black/5'} transition-colors`}
+        >
+          <div className="flex items-center gap-3">
+            {isDarkMode ? <Moon size={18} /> : <Sun size={18} />}
+            <span>{isDarkMode ? 'Dark Mode' : 'Light Mode'}</span>
+          </div>
+          <div className={`w-8 h-4 rounded-full p-0.5 flex ${isDarkMode ? 'bg-indigo-500 justify-end' : 'bg-slate-300 justify-start'}`}>
+            <motion.div layout className="w-3 h-3 rounded-full bg-white shadow-sm" />
+          </div>
+        </motion.button>
+      </div>
+    </div>
+  );
+}
